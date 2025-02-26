@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#1B1F3B] flex items-center justify-center min-h-screen font-sans">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md transform transition-all duration-300 hover:shadow-xl">
@@ -14,63 +14,86 @@
         <form method="POST" class="space-y-6">
             {% csrf_token %}
             
-            <!-- Render form fields dynamically -->
-            {% for field in form %}
-                <div>
-                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-[#1B1F3B]">
-                        {{ field.label }}
-                    </label>
-                    {{ field }}
-                    <!-- Display errors if any -->
-                    {% if field.errors %}
-                        <div class="text-red-500 text-sm mt-1">
-                            {{ field.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-
+            <!-- Username Field -->
             <div>
-                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#2ECC71] hover:bg-[#27AE60] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2ECC71] transition-all duration-300">
+                <label for="id_username" class="block text-sm font-medium text-[#1B1F3B] mb-2">
+                    Username
+                </label>
+                <input 
+                    type="text" 
+                    name="username" 
+                    id="id_username" 
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2ECC71] focus:border-[#2ECC71] transition-all duration-200"
+                    placeholder="Enter your username"
+                >
+            </div>
+
+            <!-- Email Field -->
+            <div>
+                <label for="id_email" class="block text-sm font-medium text-[#1B1F3B] mb-2">
+                    Email
+                </label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="id_email" 
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2ECC71] focus:border-[#2ECC71] transition-all duration-200"
+                    placeholder="Enter your email"
+                >
+            </div>
+
+            <!-- Password Field -->
+            <div>
+                <label for="id_password1" class="block text-sm font-medium text-[#1B1F3B] mb-2">
+                    Password
+                </label>
+                <input 
+                    type="password" 
+                    name="password1" 
+                    id="id_password1" 
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2ECC71] focus:border-[#2ECC71] transition-all duration-200"
+                    placeholder="Enter your password"
+                >
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div>
+                <label for="id_password2" class="block text-sm font-medium text-[#1B1F3B] mb-2">
+                    Confirm Password
+                </label>
+                <input 
+                    type="password" 
+                    name="password2" 
+                    id="id_password2" 
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2ECC71] focus:border-[#2ECC71] transition-all duration-200"
+                    placeholder="Confirm your password"
+                >
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button 
+                    type="submit" 
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-[#2ECC71] hover:bg-[#27AE60] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2ECC71] transition-all duration-300"
+                >
                     Sign Up
                 </button>
             </div>
         </form>
+
+        <!-- Login Link -->
         <div class="mt-6 text-center">
             <p class="text-sm text-[#1B1F3B]">
                 Already have an account? 
-                <a href="#" class="font-medium text-[#2ECC71] hover:text-[#27AE60]">
+                <a href="{% url 'login' %}" class="font-medium text-[#2ECC71] hover:text-[#27AE60]">
                     Log in
                 </a>
             </p>
         </div>
     </div>
-
-    <!-- Add Tailwind CSS for form field styling -->
-    <style>
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="date"] {
-            width: 100%;
-            padding: 0.5rem 1rem;
-            margin-top: 0.25rem;
-            border: 2px solid #E2E8F0;
-            border-radius: 0.375rem;
-            background-color: white;
-            color: #1B1F3B;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus,
-        input[type="date"]:focus {
-            border-color: #2ECC71;
-            outline: none;
-            box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
-        }
-    </style>
 </body>
 </html>
