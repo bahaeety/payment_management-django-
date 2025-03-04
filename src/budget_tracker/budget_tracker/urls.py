@@ -18,11 +18,14 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from user.views import user_login , user_signup
-from user.views import home
+from home.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls')),
     path('login/', user_login.as_view(), name='login'),
     path('signup/', user_signup.as_view(), name='signup'),
+    path('home/', home, name='home'),
+
+
 ]

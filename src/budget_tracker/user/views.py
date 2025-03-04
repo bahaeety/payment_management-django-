@@ -30,5 +30,4 @@ class user_login(View):
             user = authenticate(username=username, password=password)
             if user :
                 login(request,user)
-                return redirect('home')
         return render(request, 'registration/login.html')
